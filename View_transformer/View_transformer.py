@@ -5,18 +5,18 @@ class ViewTransformer:
     def __init__(self):
         court_with = 68
         court_length = 23.32
-        self.pixel_verticies = np.array({
+        self.pixel_verticies = np.array([
             [110, 1035],
             [265, 175],
             [910, 260],
             [1640, 915]
-        })
-        self.target_verticies = np.array({
+        ])
+        self.target_verticies = np.array([
             [0, court_with],
             [0, 0],
             [court_length, 0],
             [court_length, court_with]
-        })
+        ])
 
         self.pixel_verticies = self.pixel_verticies.astype(np.float32)
         self.target_verticies = self.target_verticies.astype(np.float32)

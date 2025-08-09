@@ -4,6 +4,7 @@ from tracker import Tracker
 from team_assigner import TeamAssigner
 from argparse import ArgumentParser
 import numpy as np
+from View_transformer import ViewTransformer
 import os
 from player_ball_assigner import PlayerBallAssigner
 from camera_movement_estimator import CameraMovementEstimator
@@ -41,6 +42,11 @@ def main():
     camera_movement_per_frame = camera_movement_estimator.get_camera_movement(video_frames, read_from_stubs=args.read_stubs , stub_path= stubs_cam)
 
     camera_movement_estimator.add_adjust_position_to_tracks(tracks, camera_movement_per_frame)
+
+    # View Trasnformer
+    view_transformer = ViewTransformer()
+    view_transformer.add_transformer_position_to_tracks(tracks)
+
     #imterpolate missing value ball
     tracks["ball"] = tracker.interpolate_ball_position(tracks["ball"])
 
