@@ -1,0 +1,21 @@
+# IDE
+.idea/
+.vscode/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Output folders
+video/
+output_video/
+model/
+*.avi
+*.mp4
+*.jpg
+*.png
+*.pt
+*.pkl
+
+# Dataset
+traning/
