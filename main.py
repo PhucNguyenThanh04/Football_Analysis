@@ -8,6 +8,7 @@ from View_transformer import ViewTransformer
 import os
 from player_ball_assigner import PlayerBallAssigner
 from camera_movement_estimator import CameraMovementEstimator
+from spedd_and_distance_estimator import SpeedAndDistance_Estimator
 
 def get_args():
     parser = ArgumentParser(description="football analysis")
@@ -50,6 +51,10 @@ def main():
     #imterpolate missing value ball
     tracks["ball"] = tracker.interpolate_ball_position(tracks["ball"])
 
+    #speed and distance
+    speed_distance_estimator = SpeedAndDistance_Estimator()
+    speed_distance_estimator.add_speed_and_distance_to_tracks(tracks)
+
     #Assige team
     team_assigner = TeamAssigner()
     team_assigner.assign_team_color(video_frames[0], tracks['players'][0])
@@ -82,6 +87,9 @@ def main():
     #draw output
     ##drwa object track
     output_video_frames = tracker.draw_annotations(video_frames, tracks, team_ball_control)
+
+    #draw speed
+    speed_distance_estimator.draw_speed_and_distance(output_video_frames, tracks)
 
     #Save video
     save_video(output_video_frames, args.output_video)

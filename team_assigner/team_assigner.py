@@ -58,8 +58,8 @@ class TeamAssigner:
         team_id = self.kmeans_team.predict(player_color.reshape(1, -1))[0]
         team_id+=1
 
-        if player_id == 10:
-            team_id = 2
+        # if player_id == 10:
+        #     team_id = 2
 
         self.player_team_dict[player_id] = team_id
 
